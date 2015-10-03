@@ -1394,6 +1394,7 @@
 /data/knox/data/19[5-9](/.*)?	        u:object_r:bbccontainer_app_data_backend:s0
 /data/knox/sdcard/19[5-9](/.*)?	        u:object_r:bbccontainer_app_data_backend:s0
 /mnt/shell/knox-emulated/19[5-9](/.*)?  u:object_r:bbccontainer_app_data_backend:s0
+/data/security/aasa(/.*)?               u:object_r:security_spota_file:s0
 /data/security/spota(/.*)?              u:object_r:security_spota_file:s0
 /data/system/container(/.*)?	u:object_r:container_system_file:s0
 
