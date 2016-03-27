@@ -43,11 +43,6 @@ on init
     chown system system /proc/avc_msg
     chmod 0660 /proc/avc_msg
 
-    # Vibetonz 
-    export VIBE_PIPE_PATH /dev/pipes 
-    mkdir /dev/pipes 0771 vibe vibe 
-    restorecon /dev/pipes
-
     # Backward compatibility
     symlink /system/etc /etc
     symlink /sys/kernel/debug /d
@@ -459,10 +454,6 @@ on boot
     chown system system /dev/knox_kap
     chmod 0660 /dev/knox_kap
 
-    # Vibetonz 
-    chmod 0660 /dev/tspdrv 
-    chown vibe vibe /dev/tspdrv
-
 # Mobicore
     mkdir /data/app/mcRegistry 0775 system system
     # basic network init
@@ -546,6 +537,7 @@ on boot
     chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 
     chown system system /sys/class/timed_output/vibrator/enable
+    chown system system /sys/class/timed_output/vibrator/intensity
     chown system system /sys/class/leds/keyboard-backlight/brightness
     chown system system /sys/class/leds/lcd-backlight/brightness
     chown system system /sys/class/leds/button-backlight/brightness
@@ -556,7 +548,6 @@ on boot
     chown system system /sys/class/leds/red/device/grpfreq
     chown system system /sys/class/leds/red/device/grppwm
     chown system system /sys/class/leds/red/device/blink
-    chown system system /sys/class/timed_output/vibrator/enable
     chown system system /sys/module/sco/parameters/disable_esco
     chown system system /sys/kernel/ipv4/tcp_wmem_min
     chown system system /sys/kernel/ipv4/tcp_wmem_def
@@ -760,6 +751,7 @@ on boot
     chown system radio /sys/class/power_supply/battery/update
     chown system radio /sys/class/power_supply/battery/factory_mode
     chown system radio /sys/class/power_supply/battery/batt_slate_mode
+    chown media sdcard_rw /sys/class/power_supply/battery/store_mode
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/call
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/video
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/music
@@ -1177,13 +1169,6 @@ service mdnsd /system/bin/mdnsd
     socket mdnsd stream 0660 mdnsr inet
     disabled
     oneshot
-
-# Vibetonz 
-service immvibed /system/bin/immvibed 
-    class core 
-    user vibe 
-    group vibe 
-    oneshot 
 
 service pre-recovery /system/bin/uncrypt
     class main
